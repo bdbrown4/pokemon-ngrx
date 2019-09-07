@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('ngrx-playground app is running!');
+    expect(page.getTitleText()).toEqual('pokemon-ngrx app is running!');
   });
 
   afterEach(async () => {

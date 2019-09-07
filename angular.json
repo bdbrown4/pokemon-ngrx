@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ngrx-playground": {
+    "pokemon-ngrx": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ngrx-playground",
+            "outputPath": "dist/pokemon-ngrx",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -67,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngrx-playground:build"
+            "browserTarget": "pokemon-ngrx:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ngrx-playground:build:production"
+              "browserTarget": "pokemon-ngrx:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngrx-playground:build"
+            "browserTarget": "pokemon-ngrx:build"
           }
         },
         "test": {
@@ -115,15 +115,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ngrx-playground:serve"
+            "devServerTarget": "pokemon-ngrx:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ngrx-playground:serve:production"
+              "devServerTarget": "pokemon-ngrx:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "ngrx-playground"
+  "defaultProject": "pokemon-ngrx"
 }
