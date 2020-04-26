@@ -10,6 +10,7 @@ import { PokemonComponent } from './pokemon.component';
   imports: [
     CommonModule,
     PokemonRoutingModule
-  ]
+  ],
+  exports: [PokemonComponent]
 })
 export class PokemonModule { }
