@@ -4,6 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -12,7 +15,16 @@ import { MaterialModule } from './material.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MaterialModule
+    MaterialModule,
+    StoreModule.forRoot({},  {
+      runtimeChecks: {
+        strictStateImmutability: false,
+        strictActionImmutability: false,
+        strictStateSerializability: false,
+        strictActionSerializability: false,
+      }}),
+    StoreDevtoolsModule.instrument(),
+    EffectsModule.forRoot([]),
   ],
   providers: [],
   bootstrap: [AppComponent]
