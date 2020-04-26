@@ -18,10 +18,10 @@ import { EffectsModule } from '@ngrx/effects';
     MaterialModule,
     StoreModule.forRoot({},  {
       runtimeChecks: {
-        strictStateImmutability: false,
-        strictActionImmutability: false,
-        strictStateSerializability: false,
-        strictActionSerializability: false,
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+        strictStateSerializability: true,
+        strictActionSerializability: true,
       }}),
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([]),

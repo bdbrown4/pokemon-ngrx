@@ -13,7 +13,14 @@ export class LandingPageEffects {
     pokemonRequestDetected$ = createEffect(() => this.actions$.pipe(
         ofType(retrievePokemon),
         switchMap(() => this.pokemonService.retrievePokemon().pipe(
-            switchMap(action => of(pokemonReceived({ pokemon: action }))),
+            switchMap(action => {
+                const sortedArr = action.sort((a, b) => a.pokeId - b.pokeId);
+                sortedArr.forEach(pokemon => {
+                    pokemon.png = `https://pokeres.bastionbot.org/images/pokemon/${pokemon.pokeId}.png`;
+                    pokemon.sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.pokeId}.png`;
+                })
+                return of(pokemonReceived({ pokemon: action.slice(0, 151) }))
+            }),
             // catchError((err) => of(console.log(err)))
         ))));
 
