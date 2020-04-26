@@ -1,0 +1,9 @@
+<mat-card class="flex-card">
+    <app-pokemon></app-pokemon>&nbsp;
+    <app-item></app-item>
+</mat-card>
+<div *ngIf="(pokemon$ | async) as pokemon">
+    <div *ngFor="let poke of pokemon">
+        <img src="{{poke.sprite}}"/>
+    </div>
+</div>
