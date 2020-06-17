@@ -10,6 +10,9 @@ export interface PokemonInterface {
     combatPower: number;
     defense: number;
     sprite: string;
+    spriteFemale: string;
+    shinySprite: string;
+    shinySpriteFemale: string;
     png: string;
     hp: number;
 }

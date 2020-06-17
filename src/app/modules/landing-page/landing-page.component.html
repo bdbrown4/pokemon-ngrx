@@ -1,9 +1,22 @@
-<mat-card class="flex-card">
-    <app-pokemon></app-pokemon>&nbsp;
-    <app-item></app-item>
-</mat-card>
-<div *ngIf="(pokemon$ | async) as pokemon">
-    <div *ngFor="let poke of pokemon">
-        <img src="{{poke.sprite}}"/>
+<mat-card class="card-margin" *ngIf="(pokemon$ | async) as pokemon; else spinner;">
+    <div class="flex-content">
+        <mat-form-field appearance="outline">
+            <mat-label>Select a pokemon to view</mat-label>
+        <mat-select (selectionChange)="selectPokemon($event.value)">
+            <mat-option *ngFor="let poke of pokemon" [value]="poke">{{poke.name}}</mat-option>
+        </mat-select>
+        </mat-form-field>
+        <mat-checkbox class="margin-top-check margin-left-check" [disabled]="selectedPokemon === undefined" (change)="setShinySprite()">Shiny</mat-checkbox>
+        <mat-radio-group class="margin-top-check margin-left-check" [disabled]="selectedPokemon === undefined" (change)="genderCheck($event.value)">
+            <mat-radio-button value="Male">Male</mat-radio-button>
+            <mat-radio-button class="margin-left-check" value="Female">Female</mat-radio-button>
+          </mat-radio-group>
+          
     </div>
-</div>
+    <div class="flex-content">
+        <img *ngIf="displaySprite" src="{{selectedPokemonSprite}}"/>
+    </div>
+</mat-card>
+<ng-template #spinner>
+    <mat-spinner class="margin-auto"></mat-spinner>
+</ng-template>
