@@ -18,6 +18,9 @@ export class LandingPageEffects {
                 sortedArr.forEach(pokemon => {
                     pokemon.png = `https://pokeres.bastionbot.org/images/pokemon/${pokemon.pokeId}.png`;
                     pokemon.sprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.pokeId}.png`;
+                    pokemon.spriteFemale = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/female/${pokemon.pokeId}.png`;
+                    pokemon.shinySprite = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${pokemon.pokeId}.png`;
+                    pokemon.shinySpriteFemale = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/female/${pokemon.pokeId}.png`;
                 })
                 return of(pokemonReceived({ pokemon: action.slice(0, 151) }))
             }),

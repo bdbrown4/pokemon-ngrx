@@ -15,12 +15,60 @@ import { filter } from 'rxjs/operators';
 export class LandingPageComponent implements OnInit {
 
   pokemon$: Observable<PokemonInterface[]>;
+  selectedPokemonSprite: string;
+  selectedPokemon: PokemonInterface;
+  selectedGender: string;
+  displaySprite = false;
+  displayFemale = false;
+  displayMale = false;
+  displayShiny = false;
+  hasFemaleDifferences = [
+    'Venusaur', 'Butterfree', 'Rattata',
+    'Raticate', 'Pikachu', 'Raichu',
+    'Zubat', 'Golbat', 'Gloom',
+    'Vileplume', 'Kadabra', 'Alakazam',
+    'Doduo', 'Dodrio', 'Hypno',
+    'Rhyhorn', 'Rhydon', 'Goldeen',
+    'Seaking', 'Scyther', 'Magikarp',
+    'Gyarados', 'Eevee',
+  ]
   constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.store.dispatch(retrievePokemon());
     this.pokemon$ = this.store.pipe(select(grabAllPokemon), filter(pokemon => !!pokemon))
+  }
 
+  selectPokemon(pokemon: PokemonInterface) {
+    this.selectedPokemon = pokemon;
+    this.genderCheck(this.selectedGender);
+    this.displaySprite = true;
+  }
+
+  genderCheck(gender: string) {
+    console.log(gender);
+    this.displayFemale = gender === 'Female';
+    this.displayMale = gender === 'Male';
+    if (this.displayFemale && this.displayShiny && this.hasFemaleDifferences.includes(this.selectedPokemon.name)) {
+      this.selectedPokemonSprite = this.selectedPokemon.shinySpriteFemale;
+    } else if (this.displayMale && this.displayShiny) {
+      this.selectedPokemonSprite = this.selectedPokemon.shinySprite;
+    } else if (this.displayFemale && this.displayShiny && !this.hasFemaleDifferences.includes(this.selectedPokemon.name)) {
+      this.selectedPokemonSprite = this.selectedPokemon.shinySprite;
+    } else if (this.displayFemale && !this.displayShiny && this.hasFemaleDifferences.includes(this.selectedPokemon.name)) {
+      this.selectedPokemonSprite = this.selectedPokemon.spriteFemale;
+    } else if (this.displayShiny) {
+      this.selectedPokemonSprite = this.selectedPokemon.shinySprite;
+    } else {
+      this.selectedPokemonSprite = this.selectedPokemon.sprite;
+    }
+    this.selectedGender = gender;
+  }
+
+  setShinySprite() {
+    this.displayShiny ?
+      this.selectedPokemonSprite = this.selectedPokemon.sprite : this.selectedPokemonSprite = this.selectedPokemon.shinySprite;
+    this.displayShiny = !this.displayShiny;
   }
 
 }

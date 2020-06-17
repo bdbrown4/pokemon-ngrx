@@ -1,5 +1,25 @@
-.flex-card {
+.flex-content {
     display: flex;
     justify-content: center;
-    margin: 10rem;
+}
+
+.card-margin {
+    margin: 15rem;
+}
+
+::ng-deep .mat-form-field {
+    width: 15rem;  
+}
+
+.margin-left-check {
+    margin-left: 1rem;
+}
+
+.margin-top-check {
+    margin-top: 1rem;
+}
+
+.margin-auto {
+    margin: 0 auto;
+    margin-top: 20rem;
 }
